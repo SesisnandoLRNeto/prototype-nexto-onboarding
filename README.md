@@ -1,22 +1,22 @@
 # prototype-nexto-onboarding
 This repository to create and validate a onboarding prototype to Nexto app
 
-Clone the repository
+# Clone the repository
 git clone <address to this repository>
 
-Install node
+# Install node
 https://nodejs.org/en/download/
 
-Install expo-cli globally
+# Install expo-cli globally
 npm i -g expo-cli
 
-Install react native globally
+# Install react native globally
 npm i -g react-native-cli
 
-Install the dependencies from the project (into the folder /prototype-nexto-onboarding)
+# Install the dependencies from the project (into the folder /prototype-nexto-onboarding)
 npm install
 
-To run the project on your devices
+# To run the project on your devices
 -Plug it with usb
 -Use the command into your terminal 'lsusb' 
 -Configure your smartphone to debug mode
