@@ -1,4 +1,4 @@
-# prototype-nexto-onboarding
+# Project: prototype-nexto-onboarding
 This repository to create and validate a onboarding prototype to Nexto app
 
 # Clone the repository
@@ -8,7 +8,7 @@ git clone <address to this repository>
 https://nodejs.org/en/download/
 
 # Install expo-cli globally
-npm i -g expo-cli
+```npm i -g expo-cli```
 
 # Install react native globally
 npm i -g react-native-cli
