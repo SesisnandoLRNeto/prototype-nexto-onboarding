@@ -11,15 +11,15 @@ https://nodejs.org/en/download/
 ```npm i -g expo-cli```
 
 # Install react native globally
-npm i -g react-native-cli
+```npm i -g react-native-cli```
 
 # Install the dependencies from the project (into the folder /prototype-nexto-onboarding)
-npm install
+```npm install```
 
 # To run the project on your devices
 -Plug it with usb
 -Use the command into your terminal 'lsusb' 
 -Configure your smartphone to debug mode
 -Into the project folder, run the following command:
-  expo start
--And get the QR code on your device
+  ```expo start```
+-And get the QR code that will shown on your terminal with your scan from device
