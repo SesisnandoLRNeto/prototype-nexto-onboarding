@@ -13,9 +13,11 @@ export default function App() {
     <>
       <StatusBar style='dark' />
       <NavigationContainer>
-        <AppStack.Navigator headerMode='none'>
-          <AppStack.Screen name='Onboarding' component={Onboarding} />
+        <AppStack.Navigator
+          screenOptions={{ headerShown: true, headerMode: 'false' }}
+        >
           <AppStack.Screen name='Home' component={Home} />
+          <AppStack.Screen name='Onboarding' component={Onboarding} />
         </AppStack.Navigator>
       </NavigationContainer>
     </>
