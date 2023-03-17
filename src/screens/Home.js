@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   buttonContainerLogin: {
-    marginTop: 250,
+    marginTop: 200,
     width: '80%',
     height: '24%',
     flexDirection: 'column',
@@ -99,6 +99,14 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'space-around',
     alignItems: 'center',
+  },
+
+  linkText: {
+    fontSize: 16,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    color: '#FFFFFF',
+    marginBottom: 12,
   },
 });
 
