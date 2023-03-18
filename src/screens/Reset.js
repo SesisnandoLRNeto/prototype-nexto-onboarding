@@ -1,44 +1,76 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { TextInput, HelperText, Text } from 'react-native-paper';
-import LogoComponent from './components/Logo';
+import { View, StyleSheet, TouchableOpacity, Image } from 'react-native';
+import { TextInput, HelperText, Text, Divider } from 'react-native-paper';
 
 const ResetScreen = () => {
   const [email, setEmail] = useState('');
-  const [pass, setPass] = useState('');
+  const navigation = useNavigation();
+  const logo = require('../../assets/adaptive-icon.png');
 
   return (
     <View style={styles.container}>
-      <LogoComponent />
+      <View
+        style={{
+          flex: 1,
+          backgroundColor: '#0256ae',
+          alignItems: 'center',
+          justifyContent: 'center',
+          marginTop: 40,
+        }}
+      >
+        <View>
+          <Image
+            style={{
+              width: 300,
+              height: 300,
+              marginBottom: 400,
+            }}
+            source={logo}
+          ></Image>
+          <View style={{ marginTop: -380, marginBottom: 100 }}>
+            <TextInput
+              style={styles.input}
+              label='E-mail'
+              placeholder='E-mail'
+              value={email}
+              onChangeText={(email) => setEmail(email)}
+            />
+            <HelperText
+              type='error'
+              visible={!email.includes('@') && email !== ''}
+            >
+              Este email é inválido!
+            </HelperText>
+          </View>
+        </View>
+      </View>
 
-      <View style={styles.inputContainer}>
-        <TextInput
-          style={styles.input}
-          label='E-mail'
-          placeholder='E-mail'
-          value={email}
-          onChangeText={(email) => setEmail(email)}
-        />
-        <HelperText type='error' visible={!email.includes('@') && email !== ''}>
-          Este email é inválido!
-        </HelperText>
+      <Divider
+        style={{
+          width: 2000,
+          height: 4,
+          marginLeft: -230,
+          marginBottom: -100,
+        }}
+      />
 
-        <TextInput
-          style={styles.input}
-          mode='outlined'
-          label='Senha'
-          placeholder='Senha'
-          value={pass}
-          right={<TextInput.Icon icon='eye' />}
-          onChangeText={(pass) => setPass(pass)}
-        />
-        <HelperText type='error' visible={pass !== '' && pass.length < 8}>
-          Sua senha deve ter mais do que 8 caracteres!
-        </HelperText>
+      <View
+        style={{
+          flex: 1,
 
-        <TouchableOpacity onPress={() => {}} style={styles.button}>
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
+          alignItems: 'center',
+          justifyContent: 'center',
+        }}
+      >
+        <View style={styles.buttonContainerLogin}>
+          <TouchableOpacity
+            onPress={() => navigation.navigate('Home')}
+            style={styles.button}
+          >
+            <Text style={styles.buttonText}>Resetar a senha</Text>
+          </TouchableOpacity>
+        </View>
       </View>
     </View>
   );
@@ -63,14 +95,13 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   inputContainer: {
-    marginTop: 250,
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
   buttonContainerLogin: {
-    marginTop: 200,
     width: '80%',
     height: '24%',
+    backgroundColor: '#0256ae',
     flexDirection: 'column',
     justifyContent: 'space-between',
   },

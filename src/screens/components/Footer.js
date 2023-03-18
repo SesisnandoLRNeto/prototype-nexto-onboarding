@@ -21,7 +21,7 @@ const Footer = ({
         justifyContent: leftButtonLabel ? 'space-between' : 'flex-end',
         height: HEIGHT,
         backgroundColor,
-        opacity: 0.6,
+        opacity: 0.9,
         alignItems: 'center',
         paddingHorizontal: FOOTER_PADDING,
       }}

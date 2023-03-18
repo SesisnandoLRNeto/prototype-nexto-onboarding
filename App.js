@@ -6,6 +6,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import Onboarding from './src/screens/Onboarding';
 import Home from './src/screens/Home';
 import LoginScreen from './src/screens/Login';
+import ResetScreen from './src/screens/Reset';
 
 const AppStack = createStackNavigator();
 
@@ -20,6 +21,7 @@ export default function App() {
           <AppStack.Screen name='Onboarding' component={Onboarding} />
           <AppStack.Screen name='Home' component={Home} />
           <AppStack.Screen name='Login' component={LoginScreen} />
+          <AppStack.Screen name='Reset' component={ResetScreen} />
         </AppStack.Navigator>
       </NavigationContainer>
     </>

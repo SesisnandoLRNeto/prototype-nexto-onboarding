@@ -27,7 +27,7 @@ const HomeScreen = () => {
       </View>
 
       <View style={styles.buttonContainerText}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Reset')}>
           <Text style={styles.linkText}> Reset Senha</Text>
         </TouchableOpacity>
         <TouchableOpacity>
