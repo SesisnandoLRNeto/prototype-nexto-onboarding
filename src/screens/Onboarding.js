@@ -12,8 +12,6 @@ const Onboarding = () => {
   const navigation = useNavigation();
   const pagerRef = useRef(null);
 
-  const [currentPage, setCurrentPage] = useState(1);
-
   const image1 = require('../../assets/onboarding-1.png');
   const image2 = require('../../assets/onboarding-2.png');
   const image3 = require('../../assets/onboarding-3.png');

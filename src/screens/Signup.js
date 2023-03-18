@@ -4,8 +4,12 @@ import { View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { TextInput, HelperText, Text, Divider } from 'react-native-paper';
 import BackButton from './components/BackButton';
 
-const ResetScreen = () => {
+const SignupScreen = () => {
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [pass, setPass] = useState('');
+  const [confirmPass, setconfirmPass] = useState('');
+
   const navigation = useNavigation();
   const logo = require('../../assets/adaptive-icon.png');
 
@@ -24,14 +28,13 @@ const ResetScreen = () => {
           <BackButton />
           <Image
             style={{
-              width: 300,
-              height: 300,
-              marginBottom: 400,
+              width: 200,
+              height: 200,
+              alignSelf: 'center',
             }}
             source={logo}
           ></Image>
-
-          <View style={{ marginTop: -380, marginBottom: 100 }}>
+          <View>
             <Text
               style={{
                 fontSize: 16,
@@ -42,8 +45,18 @@ const ResetScreen = () => {
                 alignSelf: 'center',
               }}
             >
-              Redefinir sua senha
+              Cadastro
             </Text>
+            <TextInput
+              style={styles.input}
+              label='Name'
+              placeholder='Name'
+              value={email}
+              onChangeText={(name) => setName(name)}
+            />
+            <HelperText type='error' visible={name.length < 8 && name !== ''}>
+              Seu nome deve ter no mínimo 8 caracteres!
+            </HelperText>
             <TextInput
               style={styles.input}
               label='E-mail'
@@ -51,12 +64,43 @@ const ResetScreen = () => {
               value={email}
               onChangeText={(email) => setEmail(email)}
             />
-
             <HelperText
               type='error'
               visible={!email.includes('@') && email !== ''}
             >
               Este email é inválido!
+            </HelperText>
+
+            <TextInput
+              style={styles.input}
+              mode='outlined'
+              label='Senha'
+              placeholder='Senha'
+              value={pass}
+              right={<TextInput.Icon icon='eye' />}
+              onChangeText={(pass) => setPass(pass)}
+            />
+            <HelperText type='error' visible={pass !== '' && pass.length < 8}>
+              Sua senha deve ter mais do que 8 caracteres!
+            </HelperText>
+
+            <TextInput
+              style={styles.input}
+              mode='outlined'
+              label='Confirmar senha'
+              placeholder='Confirmar senha'
+              value={pass}
+              right={<TextInput.Icon icon='eye' />}
+              onChangeText={(confirmPass) => setConfirmPass(confirmPass)}
+            />
+            <HelperText
+              type='error'
+              visible={confirmPass !== '' && confirmPass.length < 8}
+            >
+              Sua senha deve ter mais do que 8 caracteres!
+            </HelperText>
+            <HelperText type='error' visible={confirmPass !== pass}>
+              As senhas não são iguais!
             </HelperText>
           </View>
         </View>
@@ -67,7 +111,7 @@ const ResetScreen = () => {
           width: 2000,
           height: 4,
           marginLeft: -230,
-          marginBottom: -100,
+          marginBottom: -250,
         }}
       />
 
@@ -83,13 +127,7 @@ const ResetScreen = () => {
             onPress={() => navigation.navigate('Home')}
             style={styles.button}
           >
-            <Text style={styles.buttonText}>Resetar a senha</Text>
-          </TouchableOpacity>
-        </View>
-
-        <View style={styles.buttonContainerText}>
-          <TouchableOpacity onPress={() => navigation.navigate('Login')}>
-            <Text style={styles.linkText}>Cancelar</Text>
+            <Text style={styles.buttonText}>Sign Up</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -120,8 +158,8 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
   },
   buttonContainerLogin: {
-    width: '80%',
-    height: '24%',
+    marginTop: 100,
+    width: '100%',
     backgroundColor: '#0256ae',
     flexDirection: 'column',
     justifyContent: 'space-between',
@@ -137,14 +175,14 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     justifyContent: 'center',
-    flexShrink: 1,
     alignSelf: 'center',
     color: '#0256ae',
   },
   buttonContainerText: {
     width: '80%',
+    marginTop: 16,
     flexDirection: 'column',
-    justifyContent: 'space-between',
+    justifyContent: 'space-around',
     alignItems: 'center',
   },
   linkText: {
@@ -152,10 +190,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignSelf: 'center',
     color: '#FFFFFF',
+    marginBottom: 12,
   },
   input: {
     minWidth: '80%',
   },
 });
 
-export default ResetScreen;
+export default SignupScreen;

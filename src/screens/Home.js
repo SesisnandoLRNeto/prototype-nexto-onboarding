@@ -12,6 +12,18 @@ const HomeScreen = () => {
       <LogoComponent />
 
       <View style={styles.buttonContainerLogin}>
+        <Text
+          style={{
+            fontSize: 16,
+            color: 'white',
+            textAlign: 'center',
+            position: 'absolute',
+            top: -42,
+            alignSelf: 'center',
+          }}
+        >
+          Como deseja entrar?
+        </Text>
         <TouchableOpacity style={styles.button}>
           <Text style={styles.buttonText}>Continue com sua conta Google</Text>
         </TouchableOpacity>
@@ -28,9 +40,9 @@ const HomeScreen = () => {
 
       <View style={styles.buttonContainerText}>
         <TouchableOpacity onPress={() => navigation.navigate('Reset')}>
-          <Text style={styles.linkText}> Reset Senha</Text>
+          <Text style={styles.linkText}> Resetar a senha</Text>
         </TouchableOpacity>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Singup')}>
           <Text style={styles.linkText}>Não possui conta? Crie uma</Text>
         </TouchableOpacity>
       </View>

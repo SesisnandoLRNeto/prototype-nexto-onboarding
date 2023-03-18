@@ -1,9 +1,13 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useState } from 'react';
 import { View, StyleSheet, TouchableOpacity } from 'react-native';
 import { TextInput, HelperText, Text } from 'react-native-paper';
+
 import LogoComponent from './components/Logo';
 
 const LoginScreen = () => {
+  const navigation = useNavigation();
+
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
 
@@ -12,6 +16,18 @@ const LoginScreen = () => {
       <LogoComponent />
 
       <View style={styles.inputContainer}>
+        <Text
+          style={{
+            fontSize: 16,
+            color: 'white',
+            textAlign: 'center',
+            position: 'absolute',
+            top: -42,
+            alignSelf: 'center',
+          }}
+        >
+          Bem vindo de volta
+        </Text>
         <TextInput
           style={styles.input}
           label='E-mail'
@@ -36,7 +52,10 @@ const LoginScreen = () => {
           Sua senha deve ter mais do que 8 caracteres!
         </HelperText>
 
-        <TouchableOpacity onPress={() => {}} style={styles.button}>
+        <TouchableOpacity
+          onPress={() => navigation.navigate('Onboarding')}
+          style={styles.button}
+        >
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
       </View>
