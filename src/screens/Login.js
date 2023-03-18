@@ -1,37 +1,43 @@
-import React, { useRef } from 'react';
-import { useNavigation } from '@react-navigation/native';
-import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react';
+import { View, StyleSheet, TouchableOpacity } from 'react-native';
+import { TextInput, HelperText, Text } from 'react-native-paper';
 import LogoComponent from './components/Logo';
 
-const HomeScreen = () => {
-  const pagerRef = useRef(null);
-  const navigation = useNavigation();
+const LoginScreen = () => {
+  const [email, setEmail] = useState('');
+  const [pass, setPass] = useState('');
 
   return (
     <View style={styles.container}>
       <LogoComponent />
 
-      <View style={styles.buttonContainerLogin}>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Continue com sua conta Google</Text>
-        </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.buttonText}>Continue com sua conta Facebook</Text>
-        </TouchableOpacity>
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Login')}
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>Log in</Text>
-        </TouchableOpacity>
-      </View>
+      <View style={styles.inputContainer}>
+        <TextInput
+          style={styles.input}
+          label='E-mail'
+          placeholder='E-mail'
+          value={email}
+          onChangeText={(email) => setEmail(email)}
+        />
+        <HelperText type='error' visible={!email.includes('@') && email !== ''}>
+          Este email é inválido!
+        </HelperText>
 
-      <View style={styles.buttonContainerText}>
-        <TouchableOpacity>
-          <Text style={styles.linkText}> Reset Senha</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.linkText}>Não possui conta? Crie uma</Text>
+        <TextInput
+          style={styles.input}
+          mode='outlined'
+          label='Senha'
+          placeholder='Senha'
+          value={pass}
+          right={<TextInput.Icon icon='eye' />}
+          onChangeText={(pass) => setPass(pass)}
+        />
+        <HelperText type='error' visible={pass !== '' && pass.length < 8}>
+          Sua senha deve ter mais do que 8 caracteres!
+        </HelperText>
+
+        <TouchableOpacity onPress={() => {}} style={styles.button}>
+          <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -56,10 +62,8 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     marginBottom: 20,
   },
-  buttonContainer: {
-    position: 'absolute',
-    width: '80%',
-    height: '24%',
+  inputContainer: {
+    marginTop: 250,
     flexDirection: 'column',
     justifyContent: 'space-between',
   },
@@ -84,7 +88,6 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     color: '#0256ae',
   },
-
   buttonContainerText: {
     width: '80%',
     marginTop: 16,
@@ -92,7 +95,6 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
     alignItems: 'center',
   },
-
   linkText: {
     fontSize: 16,
     justifyContent: 'center',
@@ -100,6 +102,9 @@ const styles = StyleSheet.create({
     color: '#FFFFFF',
     marginBottom: 12,
   },
+  input: {
+    minWidth: '80%',
+  },
 });
 
-export default HomeScreen;
+export default LoginScreen;
