@@ -2,10 +2,37 @@ import React, { useRef } from 'react';
 import { useNavigation } from '@react-navigation/native';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import LogoComponent from './components/Logo';
+import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { auth } from '../../firebaseConfig';
 
 const HomeScreen = () => {
-  const pagerRef = useRef(null);
   const navigation = useNavigation();
+
+  const provider = new GoogleAuthProvider();
+
+  const pagerRef = useRef(null);
+
+  const googleSignIn = async () => {
+    signInWithPopup(auth, provider)
+      .then((result) => {
+        // This gives you a Google Access Token. You can use it to access the Google API.
+        const credential = GoogleAuthProvider.credentialFromResult(result);
+        const token = credential.accessToken;
+        // The signed-in user info.
+        const user = result.user;
+        console.log(token, user);
+      })
+      .catch((error) => {
+        // Handle Errors here.
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // The email of the user's account used.
+        const email = error.customData.email;
+        // The AuthCredential type that was used.
+        const credential = GoogleAuthProvider.credentialFromError(error);
+        // ...
+      });
+  };
 
   return (
     <View style={styles.container}>
@@ -24,10 +51,10 @@ const HomeScreen = () => {
         >
           Como deseja entrar?
         </Text>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity onPress={googleSignIn} style={styles.button}>
           <Text style={styles.buttonText}>Continue com sua conta Google</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity onPress={googleSignIn} style={styles.button}>
           <Text style={styles.buttonText}>Continue com sua conta Facebook</Text>
         </TouchableOpacity>
         <TouchableOpacity
