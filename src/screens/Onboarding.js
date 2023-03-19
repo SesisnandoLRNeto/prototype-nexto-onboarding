@@ -1,4 +1,4 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { View } from 'react-native';
 import ViewPager from '@react-native-community/viewpager';
 
@@ -59,7 +59,7 @@ const Onboarding = () => {
             <ProgressBar
               style={{ marginTop: 1, height: 8 }}
               progress={0.5}
-              color={'gray'}
+              color={'#07689f'}
             />
           </Divider>
           <Page
@@ -87,7 +87,7 @@ const Onboarding = () => {
             <ProgressBar
               style={{ marginTop: 1, height: 8 }}
               progress={0.75}
-              color={'gray'}
+              color={'#07689f'}
             />
           </Divider>
           <Page
@@ -115,7 +115,7 @@ const Onboarding = () => {
             <ProgressBar
               style={{ marginTop: 1, height: 8 }}
               progress={1}
-              color={'gray'}
+              color={'#07689f'}
             />
           </Divider>
           <Page
