@@ -1,15 +1,45 @@
 import { useNavigation } from '@react-navigation/native';
-import React, { useState } from 'react';
-import { View, StyleSheet, TouchableOpacity } from 'react-native';
-import { TextInput, HelperText, Text } from 'react-native-paper';
+import { signInWithEmailAndPassword } from 'firebase/auth';
+import React, { useContext, useState } from 'react';
+import { View, StyleSheet, TouchableOpacity, Alert } from 'react-native';
+import { TextInput, HelperText, Text, Snackbar } from 'react-native-paper';
+import { auth } from '../../firebaseConfig';
+import AuthContext from '../utils/contexts/auth-context';
 
 import LogoComponent from './components/Logo';
 
 const LoginScreen = () => {
+  const { signIn } = useContext(AuthContext);
+
   const navigation = useNavigation();
+
+  const [visible, setVisible] = React.useState(false);
+  const onDismissSnackBar = () => setVisible(false);
 
   const [email, setEmail] = useState('');
   const [pass, setPass] = useState('');
+
+  const login = async () => {
+    if (email !== '' && pass !== '') {
+      await signInWithEmailAndPassword(auth, email, pass)
+        .then((response) => {
+          const newUser = {
+            id: response.user.uid,
+            name: response.user.displayName,
+            email: response.user.email,
+          };
+
+          signIn(newUser);
+          setEmail('');
+          setPass('');
+
+          navigation.navigate('Onboarding');
+        })
+        .catch((error) => {
+          Alert.alert(error.code, error.message);
+        });
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -52,13 +82,22 @@ const LoginScreen = () => {
           Sua senha deve ter mais do que 8 caracteres!
         </HelperText>
 
-        <TouchableOpacity
-          onPress={() => navigation.navigate('Onboarding')}
-          style={styles.button}
-        >
+        <TouchableOpacity onPress={() => login()} style={styles.button}>
           <Text style={styles.buttonText}>Login</Text>
         </TouchableOpacity>
       </View>
+      <Snackbar
+        visible={visible}
+        onDismiss={onDismissSnackBar}
+        action={{
+          label: 'Undo',
+          onPress: () => {
+            // Do something
+          },
+        }}
+      >
+        Hey there! I'm a Snackbar.
+      </Snackbar>
     </View>
   );
 };

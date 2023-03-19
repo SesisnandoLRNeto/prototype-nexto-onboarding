@@ -17,11 +17,6 @@ const Onboarding = () => {
   const image3 = require('../../assets/onboarding-3.png');
   const image4 = require('../../assets/onboarding-4.png');
 
-  const handlePageChange = (pageNumber) => {
-    setCurrentPage(pageNumber);
-    pagerRef.current.setPage(pageNumber);
-  };
-
   return (
     <View style={{ flex: 1 }}>
       <ViewPager style={{ flex: 1 }} initialPage={0} ref={pagerRef}>
@@ -36,7 +31,7 @@ const Onboarding = () => {
             <ProgressBar
               style={{ marginTop: 1, height: 8 }}
               progress={0.25}
-              color={'gray'}
+              color={'#07689f'}
             />
           </Divider>
           <Page
@@ -49,7 +44,7 @@ const Onboarding = () => {
             backgroundColor='#07689f'
             rightButtonLabel='Pular'
             rightButtonPress={() => {
-              navigation.navigate('Home');
+              navigation.navigate('Explorer');
             }}
           />
         </View>
@@ -77,7 +72,7 @@ const Onboarding = () => {
             backgroundColor='#07689f'
             rightButtonLabel='Pular'
             rightButtonPress={() => {
-              navigation.navigate('Home');
+              navigation.navigate('Explorer');
             }}
           />
         </View>
@@ -105,7 +100,7 @@ const Onboarding = () => {
             backgroundColor='#07689f'
             rightButtonLabel='Pular'
             rightButtonPress={() => {
-              navigation.navigate('Home');
+              navigation.navigate('Explorer');
             }}
           />
         </View>
@@ -133,7 +128,7 @@ const Onboarding = () => {
             backgroundColor='#07689f'
             rightButtonLabel='Começar'
             rightButtonPress={() => {
-              navigation.navigate('Home');
+              navigation.navigate('Explorer');
             }}
           />
         </View>
